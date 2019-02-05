@@ -11,4 +11,4 @@ YellowBox.ignoreWarnings([
   'Setting a timer for a long period'
 ]);
 
-AppRegistry.registerComponent('hijrHec', () => App);
+AppRegistry.registerComponent('hijrbeliobat', () => App);

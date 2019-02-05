@@ -1,4 +1,4 @@
-package com.hijrhec;
+package com.hijrbeliobat;
 
 import android.app.Application;
 
