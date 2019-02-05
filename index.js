@@ -10,4 +10,4 @@ YellowBox.ignoreWarnings([
   'Module RCTImageLoader',
 ]);
 
-AppRegistry.registerComponent('hijrHec', () => App);
+AppRegistry.registerComponent('hijrbeliobat', () => App);
