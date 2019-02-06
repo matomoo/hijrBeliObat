@@ -95,6 +95,7 @@ class Screen extends Component<IProps, IState> {
       .then(( p ) => {
         db._saveUserProfile(p.user.uid, this.state.email, this.state.fname);
         this.props.store.user.uid = p.user.uid;
+        // this.props.store.user.userAuth = 'yesAuth';
         this.props.navigation.navigate('AppLoaderScreen');
         // this.props.navigation.navigate('Home');
       })

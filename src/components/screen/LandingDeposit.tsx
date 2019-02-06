@@ -12,9 +12,10 @@ import {
 import { observer } from 'mobx-react';
 import { inject } from 'mobx-react/native';
 import { Button, Headline, IconButton, Colors,
-  Caption, Card, Title, Paragraph, TouchableRipple, Subheading
+  Caption, Card, Title, Paragraph, TouchableRipple, Subheading,
 } from 'react-native-paper';
 import * as db1 from '../../firebase/firebase';
+import KonfirmasiDeposit from '../screen/Landing/InputKonfirmasiDeposit';
 
 interface IProps {
   navigation?: any;
@@ -28,7 +29,7 @@ interface IState {
 
 @inject('store') @observer
 class Screen extends Component<IProps, IState> {
-  static navigationOptions = {
+  public static navigationOptions = {
     title: 'Info',
   };
 
@@ -51,17 +52,18 @@ class Screen extends Component<IProps, IState> {
   public render() {
     return (
       <View style={styles.container}>
-        { this.state.isLoaded ?
+        {/* { this.state.isLoaded ?
           <ActivityIndicator /> :
-          <View>
-            <Headline>Headline</Headline>
+          <View> */}
+            <KonfirmasiDeposit />
+            {/* <Headline>Headline</Headline>
             <Title>Title</Title>
             <Subheading>Subheading</Subheading>
             <Paragraph>Paragraph</Paragraph>
             <Caption>Caption</Caption>
             <Text>Text</Text>
           </View>
-        }
+        } */}
       </View>
     );
   }

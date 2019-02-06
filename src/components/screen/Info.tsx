@@ -12,7 +12,7 @@ import {
 import { observer } from 'mobx-react';
 import { inject } from 'mobx-react/native';
 import { Button, Headline, IconButton, Colors,
-  Caption, Card, Title, Paragraph, TouchableRipple, Subheading
+  Caption, Card, Title, Paragraph, TouchableRipple, Subheading,
 } from 'react-native-paper';
 import * as db1 from '../../firebase/firebase';
 
@@ -28,7 +28,7 @@ interface IState {
 
 @inject('store') @observer
 class Screen extends Component<IProps, IState> {
-  static navigationOptions = {
+  public static navigationOptions = {
     title: 'Info',
   };
 

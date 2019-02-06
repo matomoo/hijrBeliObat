@@ -15,6 +15,7 @@ class User {
   @observable private _userBadge3: string;
   @observable private _userTerms: string;
   @observable private _userAvatar1: string;
+  @observable private _userAuth: string;
 
   @observable private _userPilihObatAktif: string;
 
@@ -85,6 +86,9 @@ class User {
 
   public get userPilihObatAktif(): string { return this._userPilihObatAktif; }
   public set userPilihObatAktif(value: string) { this._userPilihObatAktif = value; }
+
+  public get userAuth(): string { return this._userAuth; }
+  public set userAuth(value: string) { this._userAuth = value; }
 
 }
 

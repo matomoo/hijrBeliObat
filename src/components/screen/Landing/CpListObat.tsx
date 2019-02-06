@@ -86,7 +86,7 @@ class Screen extends Component<IProps, IState> {
         <View style={{marginVertical: 10}}>
           <Button mode='contained'
             onPress={() => this.onNewData()}>
-            Tambah
+            Konfirmasi Pesanan
           </Button>
         </View>
       </View>
@@ -137,7 +137,7 @@ class Screen extends Component<IProps, IState> {
           Ubah
         </Button> */}
         <Button mode='outlined' style={{marginRight: 5}} onPress={() => this.onBeliData(item)}>
-          Beli
+          Pesan
         </Button>
         {/* <Button mode='text'
           color='#B71C1C'

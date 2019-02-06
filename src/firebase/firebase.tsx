@@ -6,7 +6,7 @@ const config = {
   databaseURL: 'https://hijrbeliobat.firebaseio.com',
   projectId: 'hijrbeliobat',
   storageBucket: 'hijrbeliobat.appspot.com',
-  messagingSenderId: '266175432388'
+  messagingSenderId: '266175432388',
 };
 
 if (!firebase.apps.length) {

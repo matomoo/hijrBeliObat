@@ -25,7 +25,6 @@ interface IProps {
 }
 
 interface IState {
-  // isLoggingIn: boolean;
   isLoaded;
   users;
   email;
@@ -52,44 +51,56 @@ class Screen extends Component<IProps, IState> {
   }
 
   public componentDidMount() {
-    this.getFirstData(this.taskUser);
+    if (this.props.store.user.userAuth === 'yesAuth') {
+      this.getFirstData(this.taskUser);
+    }
   }
 
   public render() {
     return (
       <ScrollView>
         <View style={styles.container}>
-          <View style={[{width: '100%'}, {marginTop: 10}]}>
-            { this.state.users.map( (el, key) =>
-              <View key={key}>
-                <Card style={[{margin: 10}]}>
-                  <Card.Cover source={{ uri: el.userAvatar} } />
-                  <Card.Content>
-                        <Title>Nama Lengkap : { el.namaLengkap }</Title>
-                        <Title>Handphone : { el.handphone }</Title>
-                        <Title>Alamat : { el.alamat }</Title>
-                  </Card.Content>
-                  <Card.Actions>
-                    <Button mode='text'
-                      // style={{ marginRight: 5}}
-                      onPress={() => this.props.navigation.navigate('InputUserProfileScreen')}>
-                      Ubah user profile
-                    </Button>
-                    <Button mode='text'
-                      onPress={() => this.props.navigation.navigate('UserChangePwdScreen')}>
-                      Ubah password
-                    </Button>
-                  </Card.Actions>
-                </Card>
-              </View>,
-            )}
-          </View>
-          <View style={[{marginTop: 10}]}>
-            <Button mode='outlined'
-              onPress={() => this._onLogout()} >
-              Logout
-            </Button>
-          </View>
+          { this.props.store.user.userAuth === 'yesAuth' &&
+            <View style={[{width: '100%'}, {marginTop: 10}]}>
+              { this.state.users.map( (el, key) =>
+                <View key={key}>
+                  <Card style={[{margin: 10}]}>
+                    <Card.Cover source={{ uri: el.userAvatar} } />
+                    <Card.Content>
+                          <Title>Nama Lengkap : { el.namaLengkap }</Title>
+                          <Title>Handphone : { el.handphone }</Title>
+                          <Title>Alamat : { el.alamat }</Title>
+                    </Card.Content>
+                    <Card.Actions>
+                      <Button mode='text'
+                        // style={{ marginRight: 5}}
+                        onPress={() => this.props.navigation.navigate('InputUserProfileScreen')}>
+                        Ubah user profile
+                      </Button>
+                      <Button mode='text'
+                        onPress={() => this.props.navigation.navigate('UserChangePwdScreen')}>
+                        Ubah password
+                      </Button>
+                    </Card.Actions>
+                  </Card>
+                </View>,
+              )}
+              <View style={[{marginTop: 10}]}>
+                <Button mode='outlined'
+                  onPress={() => this._onLogout()} >
+                  Logout
+                </Button>
+              </View>
+            </View>
+          }
+          { this.props.store.user.userAuth === 'notAuth' &&
+            <View style={[{marginTop: 30}]}>
+              <Button mode='outlined'
+                onPress={() => this.props.navigation.navigate('Login')}>
+                Login
+              </Button>
+            </View>
+          }
         </View>
       </ScrollView>
     );

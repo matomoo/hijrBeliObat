@@ -47,17 +47,21 @@ class Screen extends Component<IProps, IState> {
   }
 
   private _bootstrapAsync = () => {
-    const userToken = this.props.store.user.uid;
-    db1.db.ref(`users/${userToken}`).once('value')
-    .then((el) => {
-      this.props.store.user.userRole = el.val().role;
-      this.props.store.user.userNamaLengkap = el.val().namaLengkap;
-      this.props.store.user.userTerms = el.val().userTerms;
-      this.props.store.user.userHandphone = el.val().handphone;
-      this.props.store.user.userAlamat = el.val().alamat;
-      // this.props.navigation.navigate(el.val().userTerms === 'nok' ? 'Terms' : 'Home');
-      this.props.navigation.navigate('HomeUserScreen');
-      });
+    if (this.props.store.user.uid) {
+      const userToken = this.props.store.user.uid;
+      db1.db.ref(`users/${userToken}`).once('value')
+      .then((el) => {
+        this.props.store.user.userRole = el.val().role;
+        this.props.store.user.userNamaLengkap = el.val().namaLengkap;
+        this.props.store.user.userTerms = el.val().userTerms;
+        this.props.store.user.userHandphone = el.val().handphone;
+        this.props.store.user.userAlamat = el.val().alamat;
+        this.props.store.user.userAuth = 'yesAuth';
+        this.props.navigation.navigate('LandingHomeScreen');
+        });
+    } else {
+      this.props.navigation.navigate('LandingHomeScreen');
+    }
   }
 
 }

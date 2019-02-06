@@ -26,6 +26,7 @@ import DiagnosisResepObatScreen from '../screen/Dokter/DiagnosisObatResep';
 import LandingHomeScreen from '../screen/LandingHome';
 import LandingResepScreen from '../screen/LandingResep';
 import LandingDepositScreen from '../screen/LandingDeposit';
+import Login from '../screen/authe/Login';
 
 // Set here for tabNavigator content
 const UserBottomTabNavigator = createBottomTabNavigator(
@@ -41,13 +42,20 @@ const UserBottomTabNavigator = createBottomTabNavigator(
     LandingResepScreen: { screen: LandingResepScreen,
       navigationOptions: () => ({
         tabBarLabel: 'Resep',
-        tabBarIcon: (() => (<Icon name='info-circle' size={30}/>) ),
+        tabBarIcon: (() => (<Icon name='align-justify' size={30}/>) ),
         tabBarVisible: true,
       }),
     },
     LandingDepositScreen: { screen: LandingDepositScreen,
       navigationOptions: () => ({
         tabBarLabel: 'Deposit',
+        tabBarIcon: (() => (<Icon name='th-large' size={30}/>) ),
+        tabBarVisible: true,
+      }),
+    },
+    ProfileScreen: { screen: ProfileScreen,
+      navigationOptions: () => ({
+        tabBarLabel: 'Profil',
         tabBarIcon: (() => (<Icon name='user-md' size={30}/>) ),
         tabBarVisible: true,
       }),
@@ -64,6 +72,14 @@ const routeConfig = {
         title: childOptions.title,
       };
     },
+  },
+  Login: {
+    screen: Login,
+    path: 'Login',
+  },
+  LandingHomeScreen: {
+    screen: LandingHomeScreen,
+    path: 'LandingHomeScreen',
   },
   InfoScreen: {
     screen: InfoScreen,

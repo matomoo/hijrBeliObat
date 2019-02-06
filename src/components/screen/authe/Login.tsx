@@ -104,6 +104,7 @@ class Screen extends Component<IProps, IState> {
     await AsyncStorage.setItem('userToken', p.user.uid);
       // db._saveUserProfile(p.user.uid, q);
     this.props.store.user.uid = p.user.uid;
+    // this.props.store.user.userAuth = 'yesAuth';
     this.props.navigation.navigate('AppLoaderScreen');
     // db1.db.ref(`users/${p.user.uid}`).once('value')
     //     .then((el) => {
