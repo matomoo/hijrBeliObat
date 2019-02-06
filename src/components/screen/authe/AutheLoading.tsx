@@ -47,22 +47,24 @@ class Screen extends Component<IProps, IState> {
 
   // Fetch the token from storage then navigate to our appropriate place
   private _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
-    // const userAva = await AsyncStorage.getItem('userAva');
-    // this.props.store.user.userAvatar1 = userAva;
-    // console.log(userAva);
-    if (userToken) {
-      this.props.store.user.uid = userToken;
-      db1.db.ref(`users/${userToken}`).on('value', (el) => {
-          this.props.store.user.userRole = el.val().role;
-          this.props.store.user.userNamaLengkap = el.val().namaLengkap;
-          this.props.store.user.userTerms = el.val().userTerms;
-          this.props.store.user.userHandphone = el.val().handphone;
-          this.props.store.user.userAlamat = el.val().alamat;
-          // console.log('authe', el.val());
-        });
-    }
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+    this.props.navigation.navigate('App');
+
+    // const userToken = await AsyncStorage.getItem('userToken');
+    // // const userAva = await AsyncStorage.getItem('userAva');
+    // // this.props.store.user.userAvatar1 = userAva;
+    // // console.log(userAva);
+    // if (userToken) {
+    //   this.props.store.user.uid = userToken;
+    //   db1.db.ref(`users/${userToken}`).on('value', (el) => {
+    //       this.props.store.user.userRole = el.val().role;
+    //       this.props.store.user.userNamaLengkap = el.val().namaLengkap;
+    //       this.props.store.user.userTerms = el.val().userTerms;
+    //       this.props.store.user.userHandphone = el.val().handphone;
+    //       this.props.store.user.userAlamat = el.val().alamat;
+    //       // console.log('authe', el.val());
+    //     });
+    // }
+    // this.props.navigation.navigate(userToken ? 'App' : 'Auth');
   }
 
 }

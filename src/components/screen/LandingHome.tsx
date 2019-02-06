@@ -12,9 +12,10 @@ import {
 import { observer } from 'mobx-react';
 import { inject } from 'mobx-react/native';
 import { Button, Headline, IconButton, Colors,
-  Caption, Card, Title, Paragraph, TouchableRipple, Subheading
+  Caption, Card, Title, Paragraph, TouchableRipple, Subheading,
 } from 'react-native-paper';
 import * as db1 from '../../firebase/firebase';
+import CpListObat from '../screen/Landing/CpListObat';
 
 interface IProps {
   navigation?: any;
@@ -28,8 +29,8 @@ interface IState {
 
 @inject('store') @observer
 class Screen extends Component<IProps, IState> {
-  static navigationOptions = {
-    title: 'Info',
+  public static navigationOptions = {
+    title: 'Aplikasi Beli Obat',
   };
 
   public taskUser: any;
@@ -45,23 +46,23 @@ class Screen extends Component<IProps, IState> {
 
   public componentDidMount() {
     this.getFirstData(this.taskUser);
-    // console.log(this.state.users);
   }
 
   public render() {
     return (
       <View style={styles.container}>
-        { this.state.isLoaded ?
-          <ActivityIndicator /> :
-          <View>
-            <Headline>Headline</Headline>
+        {/* { this.state.isLoaded ? */}
+          {/* <ActivityIndicator /> : */}
+          {/* <View style={{width: '100%'}}> */}
+            <CpListObat />
+            {/* <Headline>Headline</Headline>
             <Title>Title</Title>
             <Subheading>Subheading</Subheading>
             <Paragraph>Paragraph</Paragraph>
             <Caption>Caption</Caption>
-            <Text>Text</Text>
-          </View>
-        }
+            <Text>Text</Text> */}
+          {/* </View> */}
+        {/* } */}
       </View>
     );
   }

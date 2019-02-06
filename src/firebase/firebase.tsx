@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 const config = {
-  apiKey: "AIzaSyC3j5KELQx7WEhZILyOiCq0yDhUQeijvu0",
-    authDomain: "hijrhec.firebaseapp.com",
-    databaseURL: "https://hijrhec.firebaseio.com",
-    projectId: "hijrhec",
-    storageBucket: "hijrhec.appspot.com",
-    messagingSenderId: "669251955422"
+  apiKey: 'AIzaSyDBW4jVgAJbfitb6ZLR9bSOCNcQd0JttGs',
+  authDomain: 'hijrbeliobat.firebaseapp.com',
+  databaseURL: 'https://hijrbeliobat.firebaseio.com',
+  projectId: 'hijrbeliobat',
+  storageBucket: 'hijrbeliobat.appspot.com',
+  messagingSenderId: '266175432388'
 };
 
 if (!firebase.apps.length) {

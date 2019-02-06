@@ -23,11 +23,14 @@ import CpListObatScreen from '../screen/Apotek/CpListObat';
 import CpListDaftarAntrianByDokterScreen from '../screen/Dokter/CpListDaftarAntrianByDokter';
 import PasienRekamMedikByDokterScreen from '../screen/Dokter/PasienRekamMedikByDokter';
 import DiagnosisResepObatScreen from '../screen/Dokter/DiagnosisObatResep';
+import LandingHomeScreen from '../screen/LandingHome';
+import LandingResepScreen from '../screen/LandingResep';
+import LandingDepositScreen from '../screen/LandingDeposit';
 
 // Set here for tabNavigator content
 const UserBottomTabNavigator = createBottomTabNavigator(
   {
-    HomeUserScreen: { screen: HomeUserScreen,
+    LandingHomeScreen: { screen: LandingHomeScreen,
       navigationOptions: {
         tabBarLabel: 'Home',
         tabBarIcon: (() => (<Icon name='home' size={30}/>) ),
@@ -35,16 +38,16 @@ const UserBottomTabNavigator = createBottomTabNavigator(
         // title: 'Dzikr App', // setting header title on its screen
       },
     },
-    // Intro: { screen: InfoScreen,
-    //   navigationOptions: () => ({
-    //     tabBarLabel: 'Info',
-    //     tabBarIcon: (() => (<Icon name='info-circle' size={30}/>) ),
-    //     tabBarVisible: true,
-    //   }),
-    // },
-    ProfileScreen: { screen: ProfileScreen,
+    LandingResepScreen: { screen: LandingResepScreen,
       navigationOptions: () => ({
-        tabBarLabel: 'Profil',
+        tabBarLabel: 'Resep',
+        tabBarIcon: (() => (<Icon name='info-circle' size={30}/>) ),
+        tabBarVisible: true,
+      }),
+    },
+    LandingDepositScreen: { screen: LandingDepositScreen,
+      navigationOptions: () => ({
+        tabBarLabel: 'Deposit',
         tabBarIcon: (() => (<Icon name='user-md' size={30}/>) ),
         tabBarVisible: true,
       }),
