@@ -15,7 +15,7 @@ import { Button, Headline, IconButton, Colors,
   Caption, Card, Title, Paragraph, TouchableRipple, Subheading,
 } from 'react-native-paper';
 import * as db1 from '../../firebase/firebase';
-import KonfirmasiDeposit from '../screen/Landing/InputKonfirmasiDeposit';
+import KonfirmasiDeposit from '../screen/Landing/InputDeposit';
 
 interface IProps {
   navigation?: any;
@@ -30,7 +30,7 @@ interface IState {
 @inject('store') @observer
 class Screen extends Component<IProps, IState> {
   public static navigationOptions = {
-    title: 'Info',
+    title: 'Deposit',
   };
 
   public taskUser: any;
@@ -55,7 +55,7 @@ class Screen extends Component<IProps, IState> {
         {/* { this.state.isLoaded ?
           <ActivityIndicator /> :
           <View> */}
-            <KonfirmasiDeposit />
+            <KonfirmasiDeposit navigation={this.props.navigation} />
             {/* <Headline>Headline</Headline>
             <Title>Title</Title>
             <Subheading>Subheading</Subheading>

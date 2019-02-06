@@ -30,7 +30,7 @@ interface IState {
 @inject('store') @observer
 class Screen extends Component<IProps, IState> {
   public static navigationOptions = {
-    title: 'Upload Resep',
+    title: 'Resep',
   };
 
   public taskUser: any;

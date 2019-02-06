@@ -128,7 +128,7 @@ class Screen extends Component<IProps, IState> {
       alamat: this.state.alamat,
       userAvatar: this.state.userAvatar,
     });
-    this.props.navigation.navigate('HomeUserScreen');
+    this.props.navigation.navigate('LandingHomeScreen');
   }
 
   private async getFirstData( p ) {

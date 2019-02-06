@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   // TextInput,
   ScrollView,
+  DatePickerAndroid,
   ViewStyle,
   TextStyle,
   Platform,
@@ -28,14 +29,17 @@ interface IProps {
 }
 
 interface IState {
-  email;
-  namaLengkap;
-  handphone;
-  alamat;
-  resepSS;
+  tanggalTransfer;
+  namaPengirim;
+  bankPengirim;
+  handphonePengirim;
+  jumlahTransfer;
+  buktiBayar;
   notifUpload;
   users;
   userResep;
+  statusDeposit;
+  saldoDeposit;
 }
 
 @inject('store') @observer
@@ -49,14 +53,17 @@ class Screen extends Component<IProps, IState> {
     super(props);
     this.taskUser = db1.db.ref(`users/${this.props.store.user.uid}`);
     this.state = {
-      email : '',
-      namaLengkap : '',
-      handphone : '',
-      alamat : '',
-      resepSS : 'assets:/thumbnail-bukti.png',
+      tanggalTransfer : '',
+      namaPengirim : '',
+      bankPengirim: '',
+      handphonePengirim : '',
+      jumlahTransfer : '',
+      buktiBayar : 'assets:/thumbnail-bukti.png',
       notifUpload : '',
       users: [],
       userResep: '',
+      statusDeposit: '',
+      saldoDeposit: '',
     };
   }
 
@@ -70,48 +77,58 @@ class Screen extends Component<IProps, IState> {
     return (
       <ScrollView style={{width: '100%'}}>
         <View style={{width: '100%'}}>
-          { this.state.userResep === 'Resep upload ok' &&
+          {/* { this.state.statusDeposit === 'OK' &&
             <View style={{margin: 10}}>
-              <Subheading>Status : {this.state.userResep}</Subheading>
-              <Card>
-                <Card.Cover source={{ uri: this.state.resepSS} } />
-              </Card>
+              <Subheading>Status : {this.state.statusDeposit}</Subheading>
               <Button mode='outlined'
                 onPress={() => this._onToggleForm()} >
                 Toggle Form Upload Resep
               </Button>
             </View>
-          }
-          {/* <View style={{margin: 10}}>
+          } */}
+          <View style={{margin: 10}}>
             <TextInput
-                mode='outlined'
-                label='Nama Lengkap'
-                value={this.state.namaLengkap}
-                onChangeText={(namaLengkap) => this.setState({namaLengkap})}/>
+              disabled={true}
+              mode='outlined'
+              label='Tanggal Transfer'
+              value={this.state.tanggalTransfer}
+              onChangeText={(tanggalTransfer) => this.setState({tanggalTransfer})}/>
+            <Button onPress={() => this._onDateTap()}>
+              Pilih Tanggal
+            </Button>
             <TextInput
-                mode='outlined'
-                label='Handphone'
-                keyboardType='number-pad'
-                value={this.state.handphone}
-                onChangeText={(handphone) => this.setState({handphone})}/>
+              mode='outlined'
+              label='Nama Pengirim'
+              value={this.state.namaPengirim}
+              onChangeText={(namaPengirim) => this.setState({namaPengirim})}/>
             <TextInput
-                mode='outlined'
-                label='Alamat'
-                multiline={true}
-                numberOfLines={4}
-                value={this.state.alamat}
-                onChangeText={(alamat) => this.setState({alamat})}/>
-          </View> */}
-          { this.state.userResep === 'Resep uploading' &&
+              mode='outlined'
+              label='Bank Pengirim'
+              value={this.state.bankPengirim}
+              onChangeText={(bankPengirim) => this.setState({bankPengirim})}/>
+            <TextInput
+              mode='outlined'
+              label='Handphone Pengirim'
+              keyboardType='number-pad'
+              value={this.state.handphonePengirim}
+              onChangeText={(handphonePengirim) => this.setState({handphonePengirim})}/>
+            <TextInput
+              mode='outlined'
+              label='jumlahTransfer'
+              keyboardType='number-pad'
+              value={this.state.jumlahTransfer}
+              onChangeText={(jumlahTransfer) => this.setState({jumlahTransfer})}/>
+          </View>
+          {/* { this.state.userResep === 'Resep uploading' && */}
             <View>
               <View style={{margin: 10}}>
                 <Card>
-                  <Card.Cover source={{ uri: this.state.resepSS} } />
+                  <Card.Cover source={{ uri: this.state.buktiBayar} } />
                   <Card.Actions>
                     <Button mode='text'
                       disabled={this.state.notifUpload === '- uploading ...' ? true : false}
                       onPress={() => this._onPressAva5()}>
-                      Upload Resep {this.state.notifUpload}
+                      Upload Bukti Bayar {this.state.notifUpload}
                     </Button>
                   </Card.Actions>
                 </Card>
@@ -120,54 +137,82 @@ class Screen extends Component<IProps, IState> {
               <View style={{margin: 10}}>
                 <Button mode='contained'
                   disabled={
-                              // this.state.namaLengkap === '' ||
-                              // this.state.handphone === '' ||
-                              // this.state.alamat === '' ||
+                              // this.state.tanggalTransfer = '' ||
+                              this.state.namaPengirim === '' ||
+                              this.state.bankPengirim === '' ||
+                              this.state.handphonePengirim === '' ||
+                              this.state.jumlahTransfer === '' ||
                               this.state.notifUpload !== 'done' ||
                               this.props.store.user.userAuth === 'notAuth'
                               ? true : false }
                   onPress={() => this._onSubmit()} >
-                  Submit Resep {this.props.store.user.userAuth === 'notAuth' ? 'Silahkan login dulu' : ''}
+                  Submit Bukti Bayar {this.props.store.user.userAuth === 'notAuth' ? 'Silahkan login dulu' : ''}
                 </Button>
               </View>
             </View>
-          }
+          {/* } */}
         </View>
       </ScrollView>
     );
   }
 
   public _onSubmit() {
-    this.taskUser.update({
-      namaLengkap: this.state.namaLengkap,
-      handphone: this.state.handphone,
-      alamat: this.state.alamat,
-      resepSS: this.state.resepSS,
-      userResep: 'Resep upload ok',
+    const a = db1.db.ref(`users/${this.props.store.user.uid}/deposit`).push();
+    db1.db.ref(`users/${this.props.store.user.uid}/deposit/${a.key}`).update({
+      _id: a.key,
+      tanggalTransfer: this.state.tanggalTransfer,
+      namaPengirim: this.state.namaPengirim,
+      bankPengirim: this.state.bankPengirim,
+      handphonePengirim: this.state.handphonePengirim,
+      jumlahTransfer: this.state.jumlahTransfer,
     });
-    // this.setState({userResep: 'Resep uploading'})
+    db1.db.ref(`users/${this.props.store.user.uid}`).update({
+      statusDeposit: 'Menunggu verifikasi',
+      buktiBayarSS: this.state.buktiBayar,
+      // saldoDeposit: parseInt( this.state.saldoDeposit, 10 ) + parseInt(this.state.jumlahTransfer, 10),
+    });
+    db1.db.ref(`deposit/konfirmasi/${a.key}`).update({
+      _id: a.key,
+      uid: this.props.store.user.uid,
+      namaLengkap: this.props.store.user.userNamaLengkap,
+    });
     this.props.navigation.navigate('LandingHomeScreen');
   }
 
+  private async _onDateTap() {
+    try {
+      const {action, year, month, day} = await DatePickerAndroid.open({
+        // date: new Date(2020, 4, 25)
+        date: new Date(),
+      });
+      if (action !== DatePickerAndroid.dismissedAction) {
+        this.setState({ tanggalTransfer : `${day}/${month + 1}/${year}` });
+      }
+    } catch ({code, message}) {
+      console.warn('Cannot open date picker', message);
+    }
+  }
+
   private _onToggleForm() {
-    this.setState({userResep: 'Resep uploading'});
+    this.setState({statusDeposit: 'Bukti bayar uploading'});
   }
 
   private async getFirstData( p ) {
     await p.on('value', (result) => {
       this.setState({
-        // namaLengkap : result.val().namaLengkap,
-        // handphone : result.val().handphone,
-        // alamat : result.val().alamat,
-        resepSS : result.val().resepSS,
-        userResep: result.val().userResep,
+        // namaPengirim : result.val().namaPengirim,
+        // handphonePengirim : result.val().handphonePengirim,
+        // jumlahTransfer : result.val().jumlahTransfer,
+        // buktiBayar : result.val().buktiBayar,
+        saldoDeposit: result.val().saldoDeposit,
+        statusDeposit: result.val().statusDeposit,
       });
     });
   }
 
   private _onPressAva5() {
     const options = {
-      title: 'Pilih Resep',
+      title: 'Pilih Bukti Bayar',
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -177,7 +222,7 @@ class Screen extends Component<IProps, IState> {
       this.setState({ notifUpload: '- uploading ...'});
       // console.log('filesize', response.type, response.fileSize);
       const image = response.uri;
-      const dbRef = firebase.storage().ref('users/' + this.props.store.user.uid + '/resep/resepSS.jpg');
+      const dbRef = firebase.storage().ref('users/' + this.props.store.user.uid + '/resep/buktiBayar.jpg');
 
       const Blob = RNFetchBlob.polyfill.Blob;
       const fs = RNFetchBlob.fs;
@@ -214,7 +259,7 @@ class Screen extends Component<IProps, IState> {
 
       uploadImage(image, dbRef)
         .then((res) => {
-          this.setState({ resepSS: res,
+          this.setState({ buktiBayar: res,
                             notifUpload: 'done',
            });
         })
