@@ -27,6 +27,7 @@ import LandingHomeScreen from '../screen/LandingHome';
 import LandingResepScreen from '../screen/LandingResep';
 import LandingDepositScreen from '../screen/LandingDeposit';
 import Login from '../screen/authe/Login';
+import KonfirmasiPesananScreen from '../screen/Landing/KonfirmasiPesanan';
 
 // Set here for tabNavigator content
 const UserBottomTabNavigator = createBottomTabNavigator(
@@ -92,6 +93,10 @@ const routeConfig = {
   UserChangePwdScreen: {
     screen: UserChangePwdScreen,
     path: 'UserChangePwdScreen',
+  },
+  KonfirmasiPesananScreen: {
+    screen: KonfirmasiPesananScreen,
+    path: 'KonfirmasiPesananScreen',
   },
   // InfoScreen: {
   //   screen: InfoScreen,

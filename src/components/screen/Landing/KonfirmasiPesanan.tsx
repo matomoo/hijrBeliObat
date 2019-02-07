@@ -13,9 +13,9 @@ import { observer } from 'mobx-react';
 import { inject } from 'mobx-react/native';
 import { Button, Headline, IconButton, Colors,
   Caption, Card, Title, Paragraph, TouchableRipple, Subheading,
+  List,
 } from 'react-native-paper';
-import * as db1 from '../../firebase/firebase';
-import CpListObat from '../screen/Landing/CpListObat';
+import * as db1 from '../../../firebase/firebase';
 
 interface IProps {
   navigation?: any;
@@ -25,12 +25,13 @@ interface IProps {
 interface IState {
   isLoaded: boolean;
   users: any[];
+  itemsPesan;
 }
 
 @inject('store') @observer
 class Screen extends Component<IProps, IState> {
   public static navigationOptions = {
-    title: 'Aplikasi Beli Obat',
+    title: 'Konfirmasi Pesanan',
   };
 
   public taskUser: any;
@@ -41,28 +42,34 @@ class Screen extends Component<IProps, IState> {
     this.state = {
       isLoaded: true,
       users: [],
+      itemsPesan: [],
     };
   }
 
   public componentDidMount() {
-    this.getFirstData(this.taskUser);
+    // console.log(this.props.navigation);
+    // this.getFirstData(this.taskUser);
+    this.setState({
+      itemsPesan: this.props.navigation.state.params.el.itemsPesan,
+      isLoaded: false,
+    });
   }
 
   public render() {
+    const {itemsPesan} = this.state;
     return (
       <View style={styles.container}>
-        {/* { this.state.isLoaded ? */}
-          {/* <ActivityIndicator /> : */}
-          {/* <View style={{width: '100%'}}> */}
-            <CpListObat navigation={this.props.navigation} />
-            {/* <Headline>Headline</Headline>
-            <Title>Title</Title>
-            <Subheading>Subheading</Subheading>
-            <Paragraph>Paragraph</Paragraph>
-            <Caption>Caption</Caption>
-            <Text>Text</Text> */}
-          {/* </View> */}
-        {/* } */}
+        { this.state.isLoaded ?
+          <ActivityIndicator /> :
+          <View style={{padding: 10}}>
+            { itemsPesan.map((el) =>
+              <View key={el.IdObat} style={{marginTop: 10}}>
+                <Title>{el.NamaObat}</Title>
+                <Subheading>{el.ResepObat}</Subheading>
+              </View>,
+            ) }
+          </View>
+        }
       </View>
     );
   }
@@ -102,8 +109,8 @@ const styles = StyleSheet.create<IStyle>({
     flex: 1,
     backgroundColor: 'transparent',
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
   text: {
     fontSize: 20,

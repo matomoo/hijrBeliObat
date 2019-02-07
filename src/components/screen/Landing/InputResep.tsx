@@ -70,7 +70,7 @@ class Screen extends Component<IProps, IState> {
     return (
       <ScrollView style={{width: '100%'}}>
         <View style={{width: '100%'}}>
-          { this.state.userResep === 'Resep upload ok' &&
+          { this.state.userResep === 'Resep sudah di upload' &&
             <View style={{margin: 10}}>
               <Subheading>Status : {this.state.userResep}</Subheading>
               <Card>
@@ -78,7 +78,7 @@ class Screen extends Component<IProps, IState> {
               </Card>
               <Button mode='outlined'
                 onPress={() => this._onToggleForm()} >
-                Toggle Form Upload Resep
+                Lihat Form Upload Resep
               </Button>
             </View>
           }
@@ -143,7 +143,7 @@ class Screen extends Component<IProps, IState> {
       handphone: this.state.handphone,
       alamat: this.state.alamat,
       resepSS: this.state.resepSS,
-      userResep: 'Resep upload ok',
+      userResep: 'Resep sudah di upload',
     });
     // this.setState({userResep: 'Resep uploading'})
     this.props.navigation.navigate('LandingHomeScreen');

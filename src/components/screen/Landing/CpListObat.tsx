@@ -36,6 +36,7 @@ interface IState {
   items: any;
   firstQuery;
   itemsPesan;
+  jumlahItemPesan;
 }
 
 @inject('store') @observer
@@ -57,6 +58,7 @@ class Screen extends Component<IProps, IState> {
       items: '',
       firstQuery: '',
       itemsPesan: [],
+      jumlahItemPesan: 0,
     };
   }
 
@@ -89,8 +91,9 @@ class Screen extends Component<IProps, IState> {
         </ScrollView>
         <View style={{marginVertical: 10}}>
           <Button mode='contained'
+            disabled={this.state.jumlahItemPesan === 0 ? true : false }
             onPress={() => this.onKonfirmasiPesanan()}>
-            Konfirmasi Pesanan
+            Konfirmasi Pesanan ( {this.state.jumlahItemPesan} )
           </Button>
         </View>
       </View>
@@ -155,17 +158,16 @@ class Screen extends Component<IProps, IState> {
   }
 
   private onPesan(p) {
-    this.aPesan[p.idObat] = p.NamaObat;
-    console.log(this.aPesan);
-    // const {itemsPesan} = this.state;
-    // const a = itemsPesan;
-    // // cek p ada didalam a?
-    // a.push(p);
-    // this.setState({ itemsPesan : a });
+    if (!this.state.itemsPesan.includes(p)) {
+      this.state.itemsPesan.push(p);
+      this.setState({ jumlahItemPesan: this.state.itemsPesan.length });
+    }
   }
 
   private onKonfirmasiPesanan() {
-    console.log(this.state.itemsPesan);
+    // console.log(this.state.itemsPesan);
+    const {itemsPesan} = this.state;
+    this.props.navigation.navigate('KonfirmasiPesananScreen', { el : {itemsPesan} });
   }
 
   private onUpdateData(p) {
