@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  TouchableOpacity,
-  Image,
-  Text,
+  // TouchableOpacity,
+  // Image,
+  // Text,
   View,
   ActivityIndicator,
-  AsyncStorage,
-  StatusBar,
+  // AsyncStorage,
+  // StatusBar,
   // Button,
   Alert,
-  TouchableHighlight,
+  // TouchableHighlight,
   ScrollView,
   // List,
   FlatList,
 } from 'react-native';
 import {
-  List, Card, Title, Paragraph, Button,
-  Caption, Subheading, Divider, Searchbar,
+  // List, Paragraph, Divider,
+  Button, Card, Title,
+  Subheading, Searchbar, Caption,
 } from 'react-native-paper';
 import { observer } from 'mobx-react';
 import { inject } from 'mobx-react/native';
 import * as db1 from '../../../firebase/firebase';
-import NumberFormat from 'react-number-format';
+// import NumberFormat from 'react-number-format';
 import DataObat from '../Landing/OfflineData';
 
 interface IProps {
@@ -34,6 +35,7 @@ interface IState {
   isLoaded: boolean;
   items: any;
   firstQuery;
+  itemsPesan;
 }
 
 @inject('store') @observer
@@ -44,6 +46,7 @@ class Screen extends Component<IProps, IState> {
 
   private arrayholder: any[];
   private taskUser: any;
+  private aPesan: any[];
 
   constructor(props) {
     super(props);
@@ -53,6 +56,7 @@ class Screen extends Component<IProps, IState> {
       isLoaded: true,
       items: '',
       firstQuery: '',
+      itemsPesan: [],
     };
   }
 
@@ -85,7 +89,7 @@ class Screen extends Component<IProps, IState> {
         </ScrollView>
         <View style={{marginVertical: 10}}>
           <Button mode='contained'
-            onPress={() => this.onNewData()}>
+            onPress={() => this.onKonfirmasiPesanan()}>
             Konfirmasi Pesanan
           </Button>
         </View>
@@ -112,38 +116,18 @@ class Screen extends Component<IProps, IState> {
       />;
   }
 
-  public _keyExtractor = (item) => item.NamaObat;
+  public _keyExtractor = (item) => item.IdObat;
 
   public _renderItems = ({item}) => (
     <Card>
       <Card.Content>
         <Title>{item.NamaObat}</Title>
         <Subheading>{item.ResepObat}</Subheading>
-        {/* <NumberFormat
-          value={item.hargaBeliObat}
-          displayType={'text'} thousandSeparator={true} prefix={'Rp. '}
-          renderText={(value) => <Paragraph>{value}</Paragraph>} />
-        <NumberFormat
-          value={item.hargaJualObat}
-          displayType={'text'} thousandSeparator={true} prefix={'Rp. '}
-          renderText={(value) => <Paragraph>{value}</Paragraph>} />
-        <NumberFormat
-          value={item.jumlahObat}
-          displayType={'text'} thousandSeparator={true}
-          renderText={(value) => <Paragraph>Jumlah : {value}</Paragraph>} /> */}
       </Card.Content>
       <Card.Actions>
-        {/* <Button mode='outlined' style={{marginRight: 5}} onPress={() => this.onUpdateData(item)}>
-          Ubah
-        </Button> */}
-        <Button mode='outlined' style={{marginRight: 5}} onPress={() => this.onBeliData(item)}>
+        <Button mode='outlined' style={{marginRight: 5}} onPress={() => this.onPesan(item)}>
           Pesan
         </Button>
-        {/* <Button mode='text'
-          color='#B71C1C'
-          onPress={() => this.onDeleteData(item)}>
-          Hapus
-        </Button> */}
       </Card.Actions>
     </Card>
   )
@@ -154,7 +138,7 @@ class Screen extends Component<IProps, IState> {
       const r1 = [];
       snap.forEach((el) => {
         r1.push({
-          I: el.val().idObat,
+          idObat: el.val().idObat,
           namaObat: el.val().namaObat,
           hargaBeliObat: el.val().hargaBeliObat,
           hargaJualObat: el.val().hargaJualObat,
@@ -167,9 +151,21 @@ class Screen extends Component<IProps, IState> {
         isLoaded: false,
       });
       this.arrayholder = r1;
-      // this.notif.localNotif();
-      // this.props.store.user.userBadge2 = r1.length;
     });
+  }
+
+  private onPesan(p) {
+    this.aPesan[p.idObat] = p.NamaObat;
+    console.log(this.aPesan);
+    // const {itemsPesan} = this.state;
+    // const a = itemsPesan;
+    // // cek p ada didalam a?
+    // a.push(p);
+    // this.setState({ itemsPesan : a });
+  }
+
+  private onKonfirmasiPesanan() {
+    console.log(this.state.itemsPesan);
   }
 
   private onUpdateData(p) {

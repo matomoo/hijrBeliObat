@@ -4,25 +4,25 @@ import { createStackNavigator, createBottomTabNavigator,
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { inject, observer } from 'mobx-react/native';
 import { colors } from '../../utils/Styles';
-import appStore from '../../stores/appStore';
-import IntroScreen from '../screen/Intro';
-import NotFoundScreen from '../screen/NotFound';
-import HomeUserScreen from '../screen/HomeUser';
-import InfoScreen from '../screen/Info';
+// import appStore from '../../stores/appStore';
+// import IntroScreen from '../screen/Intro';
+// import NotFoundScreen from '../screen/NotFound';
+// import HomeUserScreen from '../screen/HomeUser';
+// import InfoScreen from '../screen/Info';
 import AppLoaderScreen from '../screen/AppLoader';
 import ProfileScreen from '../screen/Users/UserProfile';
 import InputUserProfileScreen from '../screen/Users/InputUserProfile';
 import UserChangePwdScreen from '../screen/Users/UserChangePwd';
-import UserDaftarAntrianDetailScreen from '../screen/Users/UserDaftarAntrianDetail';
-import InputItemDiagnosisScreen from '../screen/Resepsionis/InputItemDiagnosis';
-import InputItemObatScreen from '../screen/Apotek/InputItemObat';
-import InputShareOfPercentage from '../screen/Manajemen/InputShareOfPercentage';
-import CpListDiagnosisScreen from '../screen/Resepsionis/CpListDiagnosis';
-import CpListDaftarAntrianScreen from '../screen/Resepsionis/CpListDaftarAntrian';
-import CpListObatScreen from '../screen/Apotek/CpListObat';
-import CpListDaftarAntrianByDokterScreen from '../screen/Dokter/CpListDaftarAntrianByDokter';
-import PasienRekamMedikByDokterScreen from '../screen/Dokter/PasienRekamMedikByDokter';
-import DiagnosisResepObatScreen from '../screen/Dokter/DiagnosisObatResep';
+// import UserDaftarAntrianDetailScreen from '../screen/Users/UserDaftarAntrianDetail';
+// import InputItemDiagnosisScreen from '../screen/Resepsionis/InputItemDiagnosis';
+// import InputItemObatScreen from '../screen/Apotek/InputItemObat';
+// import InputShareOfPercentage from '../screen/Manajemen/InputShareOfPercentage';
+// import CpListDiagnosisScreen from '../screen/Resepsionis/CpListDiagnosis';
+// import CpListDaftarAntrianScreen from '../screen/Resepsionis/CpListDaftarAntrian';
+// import CpListObatScreen from '../screen/Apotek/CpListObat';
+// import CpListDaftarAntrianByDokterScreen from '../screen/Dokter/CpListDaftarAntrianByDokter';
+// import PasienRekamMedikByDokterScreen from '../screen/Dokter/PasienRekamMedikByDokter';
+// import DiagnosisResepObatScreen from '../screen/Dokter/DiagnosisObatResep';
 import LandingHomeScreen from '../screen/LandingHome';
 import LandingResepScreen from '../screen/LandingResep';
 import LandingDepositScreen from '../screen/LandingDeposit';
@@ -81,10 +81,6 @@ const routeConfig = {
     screen: LandingHomeScreen,
     path: 'LandingHomeScreen',
   },
-  InfoScreen: {
-    screen: InfoScreen,
-    path: 'InfoScreen',
-  },
   AppLoaderScreen: {
     screen: AppLoaderScreen,
     path: 'AppLoaderScreen',
@@ -97,50 +93,54 @@ const routeConfig = {
     screen: UserChangePwdScreen,
     path: 'UserChangePwdScreen',
   },
-  HomeUserScreen: {
-    screen: HomeUserScreen,
-    path: 'HomeUserScreen',
-  },
-  UserDaftarAntrianDetailScreen: {
-    screen: UserDaftarAntrianDetailScreen,
-    path: 'UserDaftarAntrianDetailScreen',
-  },
-  InputItemDiagnosisScreen: {
-    screen: InputItemDiagnosisScreen,
-    path: 'InputItemDiagnosisScreen',
-  },
-  InputItemObatScreen: {
-    screen: InputItemObatScreen,
-    path: 'InputItemObatScreen',
-  },
-  InputShareOfPercentage: {
-    screen: InputShareOfPercentage,
-    path: 'InputShareOfPercentage',
-  },
-  CpListDiagnosisScreen: {
-    screen: CpListDiagnosisScreen,
-    path: 'CpListDiagnosisScreen',
-  },
-  CpListDaftarAntrianScreen: {
-    screen: CpListDaftarAntrianScreen,
-    path: 'CpListDaftarAntrianScreen',
-  },
-  CpListObatScreen: {
-    screen: CpListObatScreen,
-    path: 'CpListObatScreen',
-  },
-  CpListDaftarAntrianByDokterScreen: {
-    screen: CpListDaftarAntrianByDokterScreen,
-    path: 'CpListDaftarAntrianByDokterScreen',
-  },
-  PasienRekamMedikByDokterScreen: {
-    screen: PasienRekamMedikByDokterScreen,
-    path: 'PasienRekamMedikByDokterScreen',
-  },
-  DiagnosisResepObatScreen: {
-    screen: DiagnosisResepObatScreen,
-    path: 'DiagnosisResepObatScreen',
-  },
+  // InfoScreen: {
+  //   screen: InfoScreen,
+  //   path: 'InfoScreen',
+  // },
+  // HomeUserScreen: {
+  //   screen: HomeUserScreen,
+  //   path: 'HomeUserScreen',
+  // },
+  // UserDaftarAntrianDetailScreen: {
+  //   screen: UserDaftarAntrianDetailScreen,
+  //   path: 'UserDaftarAntrianDetailScreen',
+  // },
+  // InputItemDiagnosisScreen: {
+  //   screen: InputItemDiagnosisScreen,
+  //   path: 'InputItemDiagnosisScreen',
+  // },
+  // InputItemObatScreen: {
+  //   screen: InputItemObatScreen,
+  //   path: 'InputItemObatScreen',
+  // },
+  // InputShareOfPercentage: {
+  //   screen: InputShareOfPercentage,
+  //   path: 'InputShareOfPercentage',
+  // },
+  // CpListDiagnosisScreen: {
+  //   screen: CpListDiagnosisScreen,
+  //   path: 'CpListDiagnosisScreen',
+  // },
+  // CpListDaftarAntrianScreen: {
+  //   screen: CpListDaftarAntrianScreen,
+  //   path: 'CpListDaftarAntrianScreen',
+  // },
+  // CpListObatScreen: {
+  //   screen: CpListObatScreen,
+  //   path: 'CpListObatScreen',
+  // },
+  // CpListDaftarAntrianByDokterScreen: {
+  //   screen: CpListDaftarAntrianByDokterScreen,
+  //   path: 'CpListDaftarAntrianByDokterScreen',
+  // },
+  // PasienRekamMedikByDokterScreen: {
+  //   screen: PasienRekamMedikByDokterScreen,
+  //   path: 'PasienRekamMedikByDokterScreen',
+  // },
+  // DiagnosisResepObatScreen: {
+  //   screen: DiagnosisResepObatScreen,
+  //   path: 'DiagnosisResepObatScreen',
+  // },
 };
 
 const navigatorConfig = {
