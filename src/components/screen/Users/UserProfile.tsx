@@ -96,7 +96,7 @@ class Screen extends Component<IProps, IState> {
           { this.props.store.user.userAuth === 'notAuth' &&
             <View style={[{marginTop: 30}]}>
               <Button mode='outlined'
-                onPress={() => this.props.navigation.navigate('Login')}>
+                onPress={() => this.props.navigation.navigate('AutheLoadingScreen')}>
                 Login
               </Button>
             </View>

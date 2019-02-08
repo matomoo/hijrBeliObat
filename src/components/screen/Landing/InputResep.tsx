@@ -102,7 +102,7 @@ class Screen extends Component<IProps, IState> {
                 value={this.state.alamat}
                 onChangeText={(alamat) => this.setState({alamat})}/>
           </View> */}
-          { this.state.userResep === 'Resep uploading' &&
+          { this.state.userResep !== 'Resep sudah di upload' &&
             <View>
               <View style={{margin: 10}}>
                 <Card>

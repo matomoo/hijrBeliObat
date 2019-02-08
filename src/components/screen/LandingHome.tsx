@@ -16,6 +16,7 @@ import { Button, Headline, IconButton, Colors,
 } from 'react-native-paper';
 import * as db1 from '../../firebase/firebase';
 import CpListObat from '../screen/Landing/CpListObat';
+import AdminPage from '../screen/Admin/Index';
 
 interface IProps {
   navigation?: any;
@@ -49,20 +50,15 @@ class Screen extends Component<IProps, IState> {
   }
 
   public render() {
+    // console.log(this.props.store.user.uid, this.props.store.user.userRole);
     return (
       <View style={styles.container}>
-        {/* { this.state.isLoaded ? */}
-          {/* <ActivityIndicator /> : */}
-          {/* <View style={{width: '100%'}}> */}
-            <CpListObat navigation={this.props.navigation} />
-            {/* <Headline>Headline</Headline>
-            <Title>Title</Title>
-            <Subheading>Subheading</Subheading>
-            <Paragraph>Paragraph</Paragraph>
-            <Caption>Caption</Caption>
-            <Text>Text</Text> */}
-          {/* </View> */}
-        {/* } */}
+        { this.props.store.user.userRole !== 'admin' &&
+          <CpListObat navigation={this.props.navigation} />
+        }
+        { this.props.store.user.userRole === 'admin' &&
+          <AdminPage navigation={this.props.navigation} />
+        }
       </View>
     );
   }

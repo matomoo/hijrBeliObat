@@ -60,6 +60,7 @@ class Screen extends Component<IProps, IState> {
         this.props.navigation.navigate('LandingHomeScreen');
         });
     } else {
+      this.props.store.user.userAuth = 'yesAuth';
       this.props.navigation.navigate('LandingHomeScreen');
     }
   }

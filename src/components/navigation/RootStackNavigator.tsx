@@ -28,6 +28,10 @@ import LandingResepScreen from '../screen/LandingResep';
 import LandingDepositScreen from '../screen/LandingDeposit';
 import Login from '../screen/authe/Login';
 import KonfirmasiPesananScreen from '../screen/Landing/KonfirmasiPesanan';
+import DetailKonfirmasiDepositScreen from '../screen/Admin/DetailKonfirmasiDeposit';
+import DetailRequestVisitScreen from '../screen/Admin/DetailRequestVisit';
+import AutheLoadingScreen from '../screen/authe/Login';
+// import SwitchNavi from '../navigation/SwitchNavigator';
 
 // Set here for tabNavigator content
 const UserBottomTabNavigator = createBottomTabNavigator(
@@ -74,9 +78,10 @@ const routeConfig = {
       };
     },
   },
-  Login: {
-    screen: Login,
-    path: 'Login',
+  // SwitchNav: SwitchNavi,
+  AutheLoadingScreen: {
+    screen: AutheLoadingScreen,
+    path: 'AutheLoadingScreen',
   },
   LandingHomeScreen: {
     screen: LandingHomeScreen,
@@ -97,6 +102,14 @@ const routeConfig = {
   KonfirmasiPesananScreen: {
     screen: KonfirmasiPesananScreen,
     path: 'KonfirmasiPesananScreen',
+  },
+  DetailKonfirmasiDepositScreen: {
+    screen: DetailKonfirmasiDepositScreen,
+    path: 'DetailKonfirmasiDepositScreen',
+  },
+  DetailRequestVisitScreen: {
+    screen: DetailRequestVisitScreen,
+    path: 'DetailRequestVisitScreen',
   },
   // InfoScreen: {
   //   screen: InfoScreen,
